@@ -16,6 +16,29 @@ export const CriminalList = () => {
         })
 } 
 
+eventHub.addEventListener("officerSelected", officerSelectedEventObj => {
+    const selectedOfficerName = officerSelectedEventObj.detail.officerName
+    console.log("CriminalList: officerSelected custom event has been heard on the event hub, selected officer name: ", selectedOfficerName)
+  
+    const criminalsArray = useCriminals()
+    console.log("criminalsArray", criminalsArray)
+  
+    const filteredArrayCriminals = criminalsArray.filter(
+      (criminalObj) => {
+       
+  
+        if (criminalObj.arrestingOfficer === selectedOfficerName) {
+          return true
+        }
+        return false
+      }
+    )
+    console.log("CriminalList: Array of criminals filtered for only the criminals that were arrested by selected officer", filteredArrayCriminals)
+  
+    render(filteredArrayCriminals)
+    console.log("CriminalList: Filtered list of criminals rendered to DOM")
+  })
+
 // console.log(CriminalList("This is this the criminal list", ))
 
 // this was my previous code. It is doo doo.
