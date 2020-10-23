@@ -10,16 +10,23 @@ import { useConvictions, getConvictions } from "./ConvictionProvider.js"
 const eventHub = document.querySelector(".container")
 const contentTarget = document.querySelector(".filters__crime")
 
+eventHub.addEventListener("change", (changeEvent) => {
 
-export const ConvictionSelect = () => {
-    // Get all convictions from application state
-    getConvictions()
-        .then( () => {
-    
-            const convictions = useConvictions()    
-            render(convictions)
-    })
-}
+    // Only do this if the `crimeSelect` element was changed
+    if (changeEvent.target.id === "crimeSelect") {
+        // Create custom event. Provide an appropriate name.
+        const customEvent = new CustomEvent("crimeSelected", {
+            detail: {
+                crimeThatWasChosen: parseInt(changeEvent.target.value)
+            }
+        })
+
+        // Dispatch to event hub
+        eventHub.dispatchEvent(customEvent)
+    }
+})
+
+
 
 const render = convictionsCollection => {
     /*
@@ -40,22 +47,21 @@ const render = convictionsCollection => {
     `
 }
 
+export const ConvictionSelect = () => {
+    // Get all convictions from application state
+    getConvictions()
+        .then( () => {
+    
+            const convictions = useConvictions()    
+            render(convictions)
+            //console.log(convictions)
+    })
+    //console.log(ConvictionSelect)
+}
 
-eventHub.addEventListener("change", (changeEvent) => {
 
-    // Only do this if the `crimeSelect` element was changed
-    if (changeEvent.target.id === "crimeSelect") {
-        // Create custom event. Provide an appropriate name.
-        const customEvent = new CustomEvent("crimeSelected", {
-            detail: {
-                crimeThatWasChosen: parseInt(changeEvent.target.value)
-            }
-        })
 
-        // Dispatch to event hub
-        eventHub.dispatchEvent(customEvent)
-    }
-})
+
 
 
 
