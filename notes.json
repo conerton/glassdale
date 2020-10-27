@@ -15,6 +15,14 @@
       "suspect": "Sean",
       "note": "Weird guy",
       "id": 2
+    },
+    {
+      "dateOfInterview": "2020-09-30",
+      "timestamp": 1603722524640,
+      "author": "shawn",
+      "suspect": "sean",
+      "note": "evil twin",
+      "id": 3
     }
   ]
 }
