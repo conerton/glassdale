@@ -1,4 +1,4 @@
-.criminalsList {
+/* .criminalsList {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -10,4 +10,31 @@
     margin: 1rem;
     padding: 1rem;
     
+} */
+
+.criminalsList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: space-between;
+}
+
+.criminal, .witness {
+    border: 1px dotted black;
+    margin: 1rem;
+    padding: 0.5rem;
+    flex-basis: 25%;
+}
+
+.investigation {
+    display: flex;
+}
+
+
+.criminalsContainer {
+    flex: 3
+}
+
+.notesContainer {
+    flex: 1
 }
