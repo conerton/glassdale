@@ -14,6 +14,6 @@ export const getCriminals = () => {
             }
 
         )
-
-    
-}
+        
+    }
+    console.log("CRIMINALS", useCriminals)

@@ -1,3 +1,5 @@
+//import { useConvictions } from "../convictions/ConvictionProvider"
+
 const eventHub = document.querySelector(".container")
 
 const dispatchStateChangeEvent = () => {
@@ -19,6 +21,8 @@ export const useNotes = () => {
     return notes.slice()
 }
 
+console.log("usenotes", useNotes)
+
 export const saveNote = (note) => {
     // POST note object to API
     // then get all notes from API
@@ -34,3 +38,4 @@ export const saveNote = (note) => {
     .then(getNotes)
     .then(dispatchStateChangeEvent)
 }
+console.log("SAVED NOTES", saveNote())
