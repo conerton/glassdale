@@ -14,6 +14,10 @@ import { OfficerSelect } from "./officers/OfficerSelect.js";
 import { NoteForm } from "./notes/NoteForm.js"
 import { NoteList } from "./notes/NoteList.js"
 
+import { renderFacilityButton } from "./facility/DisplayFacilitiesButton.js"
+import { FacilityList } from "./facility/FacilityList.js"
+//import { Facility } from "./facility/Facility.js";
+
 CriminalList()
 ConvictionSelect()
 OfficerList()
@@ -23,6 +27,9 @@ NoteList()
 
 //createAlibiListener()
 renderWitnessButton()
+renderFacilityButton()
+
+FacilityList()
 
 // getCriminals()
 //     .then(() => NoteForm())
