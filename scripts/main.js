@@ -7,13 +7,17 @@ import { NoteList } from "./notes/NoteList.js"
 import { createAlibiListener } from "./criminals/AlibiList.js"
 import { renderWitnessButton } from "./witnesses/WitnessButton.js";
 import "./witnesses/WitnessList.js"
+import { getCriminals } from "./criminals/CriminalProvider.js";
 
 CriminalList()
 ConvictionSelect()
 OfficerList()
 OfficerSelect()
-NoteForm()
+//NoteForm()
 NoteList()
 
 createAlibiListener()
 renderWitnessButton()
+
+getCriminals()
+    .then(() => NoteForm())
