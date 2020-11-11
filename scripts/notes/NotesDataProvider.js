@@ -10,12 +10,16 @@ const dispatchStateChangeEvent = () => {
 let notes = []
 
 export const getNotes = () => {
-    return fetch('http://localhost:8088/notes')
+    return fetch('http://localhost:8088/notes', {
+        method: "GET"
+    })
         .then(response => response.json())
         .then(parsedNotes => {
             notes = parsedNotes
+            console.log("notes", notes)
         })
 }
+console.log("GETNOTES", getNotes())
 
 export const useNotes = () => {
     return notes.slice()
@@ -38,4 +42,4 @@ export const saveNote = (note) => {
     .then(getNotes)
     .then(dispatchStateChangeEvent)
 }
-console.log("SAVED NOTES", saveNote())
+// console.log("SAVED NOTES", saveNote())

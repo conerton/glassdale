@@ -1,7 +1,8 @@
 import { getCriminals, useCriminals } from './CriminalProvider.js'
 import { Criminal } from './Criminal.js'
 import { useConvictions } from "../convictions/ConvictionProvider.js"
-
+import { getCriminalFacilities } from "../facility/CriminalFacilityProvider.js"
+import { getFacilities, useFacilities } from "../facility/FacilityProvider.js"
 const eventHub = document.querySelector(".container")
 const criminalsContainer = document.querySelector(".criminalsContainer")
 
@@ -15,6 +16,8 @@ export const CriminalList = () => {
             render(criminalArray)
         })
 } 
+
+
 
 eventHub.addEventListener("officerSelected", officerSelectedEventObj => {
     const selectedOfficerName = officerSelectedEventObj.detail.officerName
@@ -91,6 +94,9 @@ eventHub.addEventListener("crimeSelected", event => {
     }
 })
 
+
+
+//THIS IS OLD CODE BEFORE FACILITIES 
 const render = (criminalsArray) => {
     let criminalsHTMLRepresentations = ""
     for (const criminal of criminalsArray) {

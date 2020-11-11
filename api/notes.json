@@ -1,54 +1,5 @@
 {
   "notes": [
-    {
-      "dateOfInterview": "",
-      "timestamp": 1604610686084,
-      "author": "gsfdcx",
-      "criminal": "1",
-      "note": "fdxsz",
-      "id": 1
-    },
-    {
-      "dateOfInterview": "",
-      "timestamp": 1604610693317,
-      "author": "gsfdcx",
-      "criminal": "4",
-      "note": "fdxsz",
-      "id": 2
-    },
-    {
-      "dateOfInterview": "",
-      "timestamp": 1604613025835,
-      "author": "nothanks",
-      "criminal": "16",
-      "note": "wowerz",
-      "id": 3
-    },
-    {
-      "id": 4
-    },
-    {
-      "dateOfInterview": "2020-11-05",
-      "timestamp": 1604957802884,
-      "author": "My name here",
-      "criminalId": "6",
-      "note": "Oh boy a doozy",
-      "id": 5
-    },
-    {
-      "id": 6
-    },
-    {
-      "id": 7
-    },
-    {
-      "id": 8
-    },
-    {
-      "id": 9
-    },
-    {
-      "id": 10
-    }
+    
   ]
 }

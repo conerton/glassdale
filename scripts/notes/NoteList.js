@@ -33,6 +33,7 @@ const render = (notesArray, criminalsArray) => {
     notesHTMLRepresentations += NoteAsHTML(note, relatedCriminal)
   }
   notesContainer.innerHTML = `
+                <h3>Case Notes</h3>
               ${notesHTMLRepresentations}
           `
 }

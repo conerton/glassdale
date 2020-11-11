@@ -1,23 +1,28 @@
 import { CriminalList } from "./criminals/CriminalList.js"
-import { ConvictionSelect } from "./convictions/ConvictionSelect.js"
-import { OfficerList } from "./officers/OfficerList.js";
-import { OfficerSelect } from "./officers/OfficerSelect.js";
-import { NoteForm } from "./notes/NoteForm.js"
-import { NoteList } from "./notes/NoteList.js"
-import { createAlibiListener } from "./criminals/AlibiList.js"
+import { getCriminals } from "./criminals/CriminalProvider.js";
+import "./criminals/AlibiList.js"
+
 import { renderWitnessButton } from "./witnesses/WitnessButton.js";
 import "./witnesses/WitnessList.js"
-import { getCriminals } from "./criminals/CriminalProvider.js";
+
+import { ConvictionSelect } from "./convictions/ConvictionSelect.js"
+
+import { OfficerList } from "./officers/OfficerList.js";
+import { OfficerSelect } from "./officers/OfficerSelect.js";
+
+
+import { NoteForm } from "./notes/NoteForm.js"
+import { NoteList } from "./notes/NoteList.js"
 
 CriminalList()
 ConvictionSelect()
 OfficerList()
 OfficerSelect()
-//NoteForm()
+NoteForm()
 NoteList()
 
-createAlibiListener()
+//createAlibiListener()
 renderWitnessButton()
 
-getCriminals()
-    .then(() => NoteForm())
+// getCriminals()
+//     .then(() => NoteForm())
