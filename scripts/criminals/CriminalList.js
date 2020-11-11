@@ -17,6 +17,10 @@ const criminalsContainer = document.querySelector(".criminalsContainer")
 //         })
 // } 
 
+
+
+
+
 export const CriminalList = () => {
   // Kick off the fetching of both collections of data
   getFacilities()
@@ -45,17 +49,13 @@ eventHub.addEventListener("officerSelected", officerSelectedEventObj => {
   
     const filteredArrayCriminals = criminalsArray.filter(
       (criminalObj) => {
-       
-  
-        if (criminalObj.arrestingOfficer === selectedOfficerName) {
-          return true
-        }
-        return false
-      }
-    )
+    return criminalObj.arrestingOfficer === selectedOfficerName})
+        const facilities = useFacilities()
+        const crimFac = useCriminalFacilities()
+
     console.log("CriminalList: Array of criminals filtered for only the criminals that were arrested by selected officer", filteredArrayCriminals)
   
-    render(filteredArrayCriminals)
+    render(filteredArrayCriminals, facilities, crimFac)
     console.log("CriminalList: Filtered list of criminals rendered to DOM")
   })
 
@@ -78,8 +78,10 @@ eventHub.addEventListener("crimeSelected", event => {
         const filteredCriminalsArray = criminalsArray.filter(criminalObj => {
             return criminalObj.conviction === convictionThatWasChosen.name
         })
+        const facilities = useFacilities()
+        const crimFac = useCriminalFacilities()
 
-        render(filteredCriminalsArray)
+        render(filteredCriminalsArray, facilities, crimFac)
         /*
             Filter the criminals application state down to the people that committed the crime
         */
