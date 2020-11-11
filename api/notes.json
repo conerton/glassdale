@@ -1,5 +1,20 @@
 {
   "notes": [
-    
+    {
+      "dateOfInterview": "2020-11-12",
+      "timestamp": 1605122469109,
+      "author": "Shawn",
+      "criminalId": 7,
+      "note": "NOTES ",
+      "id": 1
+    },
+    {
+      "dateOfInterview": "2020-12-04",
+      "timestamp": 1605125060507,
+      "author": "Shawn",
+      "criminalId": 8,
+      "note": "Whatever Montana",
+      "id": 2
+    }
   ]
 }

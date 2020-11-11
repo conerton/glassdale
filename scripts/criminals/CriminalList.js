@@ -1,21 +1,38 @@
 import { getCriminals, useCriminals } from './CriminalProvider.js'
 import { Criminal } from './Criminal.js'
 import { useConvictions } from "../convictions/ConvictionProvider.js"
-import { getCriminalFacilities } from "../facility/CriminalFacilityProvider.js"
+import { getCriminalFacilities, useCriminalFacilities } from "../facility/CriminalFacilityProvider.js"
 import { getFacilities, useFacilities } from "../facility/FacilityProvider.js"
 const eventHub = document.querySelector(".container")
 const criminalsContainer = document.querySelector(".criminalsContainer")
 
 
+//OLD CODE BEFORE FALILITIES
+// export const CriminalList = () => {
+
+//     getCriminals()
+//         .then(() => {
+//             const criminalArray = useCriminals()
+//             render(criminalArray)
+//         })
+// } 
 
 export const CriminalList = () => {
+  // Kick off the fetching of both collections of data
+  getFacilities()
+      .then(getCriminalFacilities)
+      .then(
+          () => {
+              // Pull in the data now that it has been fetched
+              const facilities = useFacilities()
+              const crimFac = useCriminalFacilities()
+              const criminals = useCriminals()
 
-    getCriminals()
-        .then(() => {
-            const criminalArray = useCriminals()
-            render(criminalArray)
-        })
-} 
+              // Pass all three collections of data to render()
+              render(criminals, facilities, crimFac)
+          }
+      )
+}
 
 
 
@@ -44,25 +61,6 @@ eventHub.addEventListener("officerSelected", officerSelectedEventObj => {
 
 // console.log(CriminalList("This is this the criminal list", ))
 
-// this was my previous code. It is doo doo.
-// export const CriminalList = () => {
-//     getCriminals()
-//     .then( () => {
-//         const criminals = useCriminals()
-//         let criminalsHTMLRepresentations = ""
-//         for (const criminal of criminals) {
-//             criminalsHTMLRepresentations += Criminal(criminal)
-
-//             contentElement.innerHTML = `
-//             <h3>Glassdale Criminals</h3>
-//             <section class="criminalsList">
-//                 ${criminalsHTMLRepresentations}
-//             </section>
-//             `
-//             }
-//          }
-//         )
-//     }
 
 // Listen for the custom event you dispatched in ConvictionSelect
 eventHub.addEventListener("crimeSelected", event => {
@@ -94,23 +92,44 @@ eventHub.addEventListener("crimeSelected", event => {
     }
 })
 
+const render = (criminalsToRender, allFacilities, allRelationships) => {
+  // Step 1 - Iterate all criminals
+  criminalsContainer.innerHTML = criminalsToRender.map(
+      (criminalObject) => {
+          // Step 2 - Filter all relationships to get only ones for this criminal
+          const facilityRelationshipsForThisCriminal = allRelationships.filter(cf => cf.criminalId === criminalObject.id)
+
+          // Step 3 - Convert the relationships to facilities with map()
+          const facilities = facilityRelationshipsForThisCriminal.map(cf => {
+              const matchingFacilityObject = allFacilities.find(facility => facility.id === cf.facilityId)
+              return matchingFacilityObject
+          })
+
+          // Must pass the matching facilities to the Criminal component
+          return Criminal(criminalObject, facilities)
+      }
+  ).join("")
+}
+
+
+
 
 
 //THIS IS OLD CODE BEFORE FACILITIES 
-const render = (criminalsArray) => {
-    let criminalsHTMLRepresentations = ""
-    for (const criminal of criminalsArray) {
+// const render = (criminalsArray) => {
+//     let criminalsHTMLRepresentations = ""
+//     for (const criminal of criminalsArray) {
   
-      criminalsHTMLRepresentations += Criminal(criminal)
+//       criminalsHTMLRepresentations += Criminal(criminal)
   
-      criminalsContainer.innerHTML = `
-            <h3>Glassdale Criminals</h3>
-            <section class="criminalsList">
-              ${criminalsHTMLRepresentations}
-            </section>
-          `
-    }
-  }
+//       criminalsContainer.innerHTML = `
+//             <h3>Glassdale Criminals</h3>
+//             <section class="criminalsList">
+//               ${criminalsHTMLRepresentations}
+//             </section>
+//           `
+//     }
+//   }
 // const render = criminalCollection => {
 //     contentTarget.innerHTML = you_fill_this_in
 // }
