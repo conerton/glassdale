@@ -17,18 +17,10 @@ const criminalsContainer = document.querySelector(".criminalsContainer");
 // }
 
 export const CriminalList = () => {
-  // Kick off the fetching of both collections of data
-  getFacilities()
-    .then(getCriminalFacilities)
-    .then(() => {
-      // Pull in the data now that it has been fetched
-      const facilities = useFacilities();
-      const crimFac = useCriminalFacilities();
-      const criminals = useCriminals();
-
-      // Pass all three collections of data to render()
-      render(criminals, facilities, crimFac);
-    });
+    // get the criminals 
+    // get the criminalFac
+    // get the facilities 
+    // out that data into empty arrays to be used outside of this function.
 };
 
 eventHub.addEventListener("officerSelected", (officerSelectedEventObj) => {
@@ -88,27 +80,11 @@ eventHub.addEventListener("crimeSelected", (event) => {
   }
 });
 
-const render = (criminalsToRender, allFacilities, allRelationships) => {
-  // Step 1 - Iterate all criminals
-  criminalsContainer.innerHTML = criminalsToRender
-    .map((criminalObject) => {
-      // Step 2 - Filter all relationships to get only ones for this criminal
-      const facilityRelationshipsForThisCriminal = allRelationships.filter(
-        (cf) => cf.criminalId === criminalObject.id
-      );
-
-      // Step 3 - Convert the relationships to facilities with map()
-      const facilities = facilityRelationshipsForThisCriminal.map((cf) => {
-        const matchingFacilityObject = allFacilities.find(
-          (facility) => facility.id === cf.facilityId
-        );
-        return matchingFacilityObject;
-      });
-
-      // Must pass the matching facilities to the Criminal component
-      return Criminal(criminalObject, facilities);
-    })
-    .join("");
+const render = () => {
+  //here we will render the criminals on the DOM
+  //We are going to loop through the crimFac and find the criminals with the matching Id's
+  //Then take that found data and find the facilities of the criminals found in CrimFac
+  //then render all of that information to the DOM
 };
 
 //THIS IS OLD CODE BEFORE FACILITIES

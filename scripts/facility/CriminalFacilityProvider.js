@@ -1,13 +1,12 @@
 let criminalFacilities = []
 
 export const useCriminalFacilities = () => {
-    return criminalFacilities.slice()
+   // taking the data from criminalFacilities and slicing it one by one in the array
 }
 
 export const getCriminalFacilities = () => {
-    return fetch("https://criminals.glassdale.us/criminalFacilities")
-        .then(response => response.json())
-        .then(apiData => {
-            criminalFacilities = apiData
-        })
+    // make a fetch call to the criminalFacility API to get data
+    // then make it readable for json
+    // then put the data in an empty array called criminalFacilities
+    
 }

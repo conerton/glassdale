@@ -10,21 +10,8 @@ const contentTarget = document.querySelector(".facility__button")
 const eventHub = document.querySelector(".container")
 
 export const renderFacilityButton = () => {
-
-    contentTarget.innerHTML = `
-    
-        <button id="display-facility-button"">Facility Button</button>`
+    //need to make HTML on a button to be clicked
         
 }
 
-eventHub.addEventListener("click", (clickEvent) => {
-    if (clickEvent.target.id === "display-facility-button") {
-        console.log("BUTTON CLICKED")
-        const facilityButtonClicked = new CustomEvent("facilitiesClicked")
-
-        eventHub.dispatchEvent(facilityButtonClicked)
-        
-    }
-
-
-})
+//need to add a eventHub listener to so the button knows what to look for when it is clicked.
