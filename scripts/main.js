@@ -15,6 +15,8 @@ import { NoteForm } from "./notes/NoteForm.js"
 import { NoteList } from "./notes/NoteList.js"
 
 import { renderFacilityButton } from "./facility/DisplayFacilitiesButton.js"
+import "./facility/FacilityList.js"
+
 //import { FacilityList } from "./facility/FacilityList.js"
 //import { Facility } from "./facility/Facility.js";
 

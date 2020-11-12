@@ -21,6 +21,7 @@ export const CriminalList = () => {
     // get the criminalFac
     // get the facilities 
     // out that data into empty arrays to be used outside of this function.
+    // call the redner function 
 };
 
 eventHub.addEventListener("officerSelected", (officerSelectedEventObj) => {
