@@ -1,39 +1,82 @@
 
 import { useCriminals, getCriminals } from "../criminals/CriminalProvider.js";
 import { Facility } from "./Facility.js";
+import { getCriminalFacilities, useCriminalFacilities } from "./CriminalFacilityProvider.js"
+import { getFacilities, useFacilities } from "./FacilityProvider.js"
 
 const eventHub = document.querySelector(".container")
-const facilityHTMLRepresentations = document.querySelector(".criminalsContainer")
+const facilitiesContainer = document.querySelector(".facilityContainer")
 
-
+let facilities = []
+let crimFac = []
+let criminals = []
 
 eventHub.addEventListener("facilityButtonClicked", () => {
     console.log("BUTTON WAS CLICKED")
     FacilityList()
 })
 
-const FacilityList = () => {
 
-    getCriminals()
-        .then(() => {
-            const criminalArray = useCriminals()
-            console.log(criminalArray)
-            render(criminalArray)
-        })
-}
+export const FacilityList = () => {
 
-const render = (facilityArray) => {
-    let facilityHTMLRepresentations = ""
-    for (const facility of facilityArray) {
+  getFacilities()
+      .then(getCriminalFacilities)
+      .then(getCriminals)
+      .then(() => {
+        facilities = useFacilities()
+        crimFac = useCriminalFacilities()
+        criminals = useCriminals()
+  
+        render()
+      })
+      }
 
-        facilityHTMLRepresentations += Facility(facility)
+      const render = () => {
+        facilitiesContainer.innerHTML = `
+                <h3>Glassdale Facilities</h3>
+                <section class="facilitiesList">
+                  ${facilities.map(facility => {
+          const criminalRelationshipsForThisFacility = crimFac.filter(cf => cf.facilityId === facility.id)
+          const criminalsAtThisFacility = criminalRelationshipsForThisFacility.map(cf => {
+            const matchingCriminalObj = criminals.find(criminal => criminal.id === cf.criminalId)
+            return matchingCriminalObj
+          })
+          return Facility(facility, criminalsAtThisFacility)
+        }).join("")
+          }
+                </section>
+              `
+      }
 
-        facilityContainer.innerHTML = `
-        <h3>Facility</h3>
-        <section class="facilityList">
-            ${facilityHTMLRepresentations}
-        </section>
 
-        `
-    }
-}
+
+
+
+
+// OLD BROKE CODE
+// export const FacilityList = () => {
+
+//     getCriminals()
+//         .then(() => {
+//             const criminalArray = useCriminals()
+//             console.log(criminalArray)
+//             render(criminalArray)
+//         })
+// }
+
+
+// const render = (facilityArray) => {
+//     let facilityHTMLRepresentations = ""
+//     for (const facility of facilityArray) {
+
+//         facilityHTMLRepresentations += Facility(facility)
+
+//         facilityContainer.innerHTML = `
+//         <h3>Facility</h3>
+//         <section class="facilityList">
+//             ${facilityHTMLRepresentations}
+//         </section>
+
+//         `
+//     }
+// }
